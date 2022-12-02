@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import NavBar from "./NavBar";
 
 const Following = () => {
@@ -52,9 +53,9 @@ const Following = () => {
     <>
       <NavBar />
 
-      <div>
-        <button onClick={() => setChange(false)}>kötüler</button>
-        <button onClick={() => setChange(true)}>sevmediklerimiz</button>
+      <div className="text-center" >
+        <Button className="p-2 m-2 text-center " onClick={() => setChange(false)}>kötüler</Button>
+        <Button className="p-2 m-2 text-center " onClick={() => setChange(true)}>sevmediklerimiz</Button>
       </div>
       <div className="main">
         {change
@@ -63,7 +64,7 @@ const Following = () => {
                 <div className="card">
                   <h4>{item}</h4>
                   <a href={`https://github.com/${item}`} target="_blank">
-                    <button>Gel Gör Beni</button>
+                <Button variant="outline-info">Visit My Page</Button>
                   </a>
                 </div>
               );
@@ -73,7 +74,7 @@ const Following = () => {
                 <div className="card">
                   <h4>{item}</h4>
                   <a href={`https://github.com/${item}`} target="_blank">
-                    <button>Gel Gör Beni</button>
+                   <Button variant="outline-info">Visit My Page</Button>
                   </a>
                 </div>
               );

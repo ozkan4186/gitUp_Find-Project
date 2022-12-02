@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NavBar from "./NavBar";
 import Followers from "./Following";
+import { Button } from "react-bootstrap";
 
 const Home = () => {
   const [followers, setFollowers] = useState([]);
 
-  const user = JSON.parse(sessionStorage.getItem("userlogin"));
+  const user = JSON.parse(sessionStorage.getItem("values"));
 
   const url = `https://api.github.com/users/${user}/followers?per_page=100`;
 
@@ -28,7 +29,7 @@ const Home = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar/>
       <div className="main">
         {followers &&
           followers.map((item,index) => {
@@ -36,9 +37,8 @@ const Home = () => {
               <div className="card" key={index}>
                 <img src={item?.avatar_url} alt="" />
                 <h4>{item?.login}</h4>
-
                 <a href={item?.html_url} target="_blank">
-                  <button>Gel Gör Beni</button>
+                  <Button variant="outline-info">Visit My Page</Button>
                 </a>
               </div>
             );

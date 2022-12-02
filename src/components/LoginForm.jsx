@@ -1,36 +1,32 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const [userlogin, setUserlogin] = useState();
-  const navigate = useNavigate();
+  const [values, setValues] = useState("")
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const navigate=useNavigate()
 
-    sessionStorage.setItem("userlogin", JSON.stringify(userlogin));
-    navigate("/home");
-    setUserlogin("");
-  };
-
-  console.log("userlogin :>> ", userlogin);
+const handleSubmit=(e)=>{
+e.preventDefault()
+navigate("/home")
+setValues("")
+ sessionStorage.setItem("values", JSON.stringify(values));
+}
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h1>Kullanıcı İsim Gir</h1>
+    <div className="container">
+      <Form className="form" onSubmit={handleSubmit} >
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label  >ENTER YOUR GİTHUB USERNAME</Form.Label>
+          <Form.Control  className="p-3" type="text" value={values} onChange={(e)=> setValues(e.target.value) }  placeholder="Please Enter Your Username"  reguired />
+        </Form.Group>
 
-        <input
-          onChange={(e) => setUserlogin(e.target.value)}
-          value={userlogin}
-          type="text"
-          name=""
-          id=""
-          placeholder="Username giriniz"
-        />
-        <br />
-        <button type="submit">Login</button>
-      </form>
+        <Button variant="danger" className="p-3 fs-2 fw-bold" type="submit" disabled={!values} >
+          LOGİN
+        </Button>
+      </Form>
     </div>
   );
 };
